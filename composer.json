@@ -1,0 +1,29 @@
+{
+    "name": "tjbp/eloquent-joins",
+    "description": "Support for joins at the relationship level in Laravel's Eloquent ORM.",
+    "keywords": ["laravel", "eloquent", "join"],
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Tom Pitcher",
+            "email": "github.com@tjbp.net"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/tjbp/eloquent-joins/issues",
+        "source": "https://github.com/tjbp/eloquent-joins"
+    },
+    "autoload": {
+        "psr-4": {
+            "EloquentJoins\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/database": "^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "mockery/mockery": "~0.9.1"
+    }
+}
