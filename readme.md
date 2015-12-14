@@ -1,6 +1,6 @@
 # Eloquent Joins
 
-Laravel's Eloquent supports joins, but internally calls the underlying query builder, thereby expecting the name of a table and keys to join it on as arguments. This package allows you to simply call `$model->join($relation)` to join the relationship's table on the keys declared by your relationship, select its columns and hydrate the joined records as models in the resulting collection.
+This package allows you to simply call `$model->join($relation)` to join a Laravel Eloquent relationship's table on the keys declared by your relationship. Columns will be selected automatically,  and the joined records hydrated as models in the resulting collection. Laravel's Eloquent does support joins normally, but internally calls the underlying query builder, thereby expecting the name of a table and keys to join it on as arguments.
 
 ## Installation
 
@@ -38,4 +38,4 @@ You can string multiple `join()` calls, as well as use the other types of join n
 
 ### Licence
 
-Eloquent Joins is free and gratis software licensed under the [GPL3 licence](https://www.gnu.org/licenses/gpl-3.0). This allows you to use Eloquent Joins for commercial purposes, but any derivative works (adaptations to the code) must also be released under the same licence. Mustard is built upon the [Laravel framework](http://laravel.com), which is licensed under the [MIT licence](http://opensource.org/licenses/MIT).
+Eloquent Joins is free and gratis software licensed under the [GPL3 licence](https://www.gnu.org/licenses/gpl-3.0). This allows you to use Eloquent Joins for commercial purposes, but any derivative works (adaptations to the code) must also be released under the same licence.
