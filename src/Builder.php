@@ -21,13 +21,10 @@ along with Eloquent Joins.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace EloquentJoins;
 
-use Illuminate\Support\Arr;
-use ReflectionClass;
-
 use Illuminate\Database\Eloquent\Builder as BaseBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
+use Illuminate\Support\Arr;
 
 class Builder extends BaseBuilder
 {
@@ -41,7 +38,8 @@ class Builder extends BaseBuilder
     /**
      * Get the hydrated models without eager loading.
      *
-     * @param  array  $columns
+     * @param array $columns
+     *
      * @return \Illuminate\Database\Eloquent\Model[]
      */
     public function getModels($columns = ['*'])
@@ -78,9 +76,10 @@ class Builder extends BaseBuilder
     /**
      * Add a join clause to the query.
      *
-     * @param  string  $relation
-     * @param  string  $type
-     * @param  bool    $where
+     * @param string $relation
+     * @param string $type
+     * @param bool   $where
+     *
      * @return $this
      */
     public function join($relationName, $type = 'inner', $where = false)
@@ -92,9 +91,9 @@ class Builder extends BaseBuilder
         if ($relation instanceof BelongsTo) {
             $this->query->join(
                 $relation->getRelated()->getTable(),
-                $this->model->getTable() . '.' . $relation->getForeignKey(),
+                $this->model->getTable().'.'.$relation->getForeignKey(),
                 '=',
-                $relation->getRelated()->getTable() . '.' . $relation->getOtherKey(),
+                $relation->getRelated()->getTable().'.'.$relation->getOtherKey(),
                 $type,
                 $where
             );
@@ -110,7 +109,7 @@ class Builder extends BaseBuilder
 
             $this->query->join(
                 $relation->getRelated()->getTable(),
-                $relation->getRelated()->getTable() . '.' . $relation->getRelated()->getKeyName(),
+                $relation->getRelated()->getTable().'.'.$relation->getRelated()->getKeyName(),
                 '=',
                 $relation->getOtherKey(),
                 $type,
@@ -133,10 +132,10 @@ class Builder extends BaseBuilder
             ->getColumnListing($relation->getRelated()->getTable());
 
         array_walk($relation_columns, function (&$column) use ($relation, $relationName) {
-            $column = $relation->getRelated()->getTable() . '.' . $column . ' as ' . $relationName . '.' . $column;
+            $column = $relation->getRelated()->getTable().'.'.$column.' as '.$relationName.'.'.$column;
         });
 
-        $this->query->addSelect(array_merge([$this->model->getTable() . '.*'], $relation_columns));
+        $this->query->addSelect(array_merge([$this->model->getTable().'.*'], $relation_columns));
 
         return $this;
     }
@@ -144,8 +143,9 @@ class Builder extends BaseBuilder
     /**
      * Add a "join where" clause to the query.
      *
-     * @param  string  $relation
-     * @param  string  $type
+     * @param string $relation
+     * @param string $type
+     *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function joinWhere($relation, $type = 'inner')
@@ -156,7 +156,8 @@ class Builder extends BaseBuilder
     /**
      * Add a left join to the query.
      *
-     * @param  string  $relation
+     * @param string $relation
+     *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function leftJoin($relation)
@@ -167,7 +168,8 @@ class Builder extends BaseBuilder
     /**
      * Add a "join where" clause to the query.
      *
-     * @param  string  $relation
+     * @param string $relation
+     *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function leftJoinWhere($relation)
@@ -178,7 +180,8 @@ class Builder extends BaseBuilder
     /**
      * Add a right join to the query.
      *
-     * @param  string  $relation
+     * @param string $relation
+     *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function rightJoin($relation)
@@ -189,7 +192,8 @@ class Builder extends BaseBuilder
     /**
      * Add a "right join where" clause to the query.
      *
-     * @param  string  $relation
+     * @param string $relation
+     *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function rightJoinWhere($relation)
