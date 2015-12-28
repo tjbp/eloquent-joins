@@ -21,7 +21,6 @@ along with Eloquent Joins.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace EloquentJoins;
 
-use EloquentJoins\Builder;
 use EloquentJoins\Relations\BelongsToMany;
 use EloquentJoins\Relations\HasManyThrough;
 
@@ -30,7 +29,8 @@ trait ModelTrait
     /**
      * Create a new Eloquent query builder for the model.
      *
-     * @param  \Illuminate\Database\Query\Builder $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function newEloquentBuilder($query)
@@ -41,16 +41,17 @@ trait ModelTrait
     /**
      * Define a has-many-through relationship.
      *
-     * @param  string  $related
-     * @param  string  $through
-     * @param  string|null  $firstKey
-     * @param  string|null  $secondKey
-     * @param  string|null  $localKey
+     * @param string      $related
+     * @param string      $through
+     * @param string|null $firstKey
+     * @param string|null $secondKey
+     * @param string|null $localKey
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function hasManyThrough($related, $through, $firstKey = null, $secondKey = null, $localKey = null)
     {
-        $through = new $through;
+        $through = new $through();
 
         $firstKey = $firstKey ?: $this->getForeignKey();
 
@@ -58,17 +59,18 @@ trait ModelTrait
 
         $localKey = $localKey ?: $this->getKeyName();
 
-        return new HasManyThrough((new $related)->newQuery(), $this, $through, $firstKey, $secondKey, $localKey);
+        return new HasManyThrough((new $related())->newQuery(), $this, $through, $firstKey, $secondKey, $localKey);
     }
 
     /**
      * Define a many-to-many relationship.
      *
-     * @param  string  $related
-     * @param  string  $table
-     * @param  string  $foreignKey
-     * @param  string  $otherKey
-     * @param  string  $relation
+     * @param string $related
+     * @param string $table
+     * @param string $foreignKey
+     * @param string $otherKey
+     * @param string $relation
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
@@ -85,7 +87,7 @@ trait ModelTrait
         // instances as well as the relationship instances we need for this.
         $foreignKey = $foreignKey ?: $this->getForeignKey();
 
-        $instance = new $related;
+        $instance = new $related();
 
         $otherKey = $otherKey ?: $instance->getForeignKey();
 
