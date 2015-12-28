@@ -1,5 +1,12 @@
 # Eloquent Joins
 
+[![StyleCI](https://styleci.io/repos/45935955/shield?style=flat)](https://styleci.io/repos/45935955)
+[![Build Status](https://travis-ci.org/tjbp/eloquent-joins.svg)](https://travis-ci.org/tjbp/eloquent-joins)
+[![Total Downloads](https://poser.pugx.org/tjbp/eloquent-joins/d/total.svg)](https://packagist.org/packages/tjbp/eloquent-joins)
+[![Latest Stable Version](https://poser.pugx.org/tjbp/eloquent-joins/v/stable.svg)](https://packagist.org/packages/tjbp/eloquent-joins)
+[![Latest Unstable Version](https://poser.pugx.org/tjbp/eloquent-joins/v/unstable.svg)](https://packagist.org/packages/tjbp/eloquent-joins)
+[![License](https://poser.pugx.org/tjbp/eloquent-joins/license.svg)](https://packagist.org/packages/tjbp/eloquent-joins)
+
 This package allows you to simply call `$model->join($relation)` to join a Laravel Eloquent relationship's table on the keys declared by your relationship. Columns will be selected automatically,  and the joined records hydrated as models in the resulting collection. Laravel's Eloquent does support joins normally, but internally calls the underlying query builder, thereby expecting the name of a table and keys to join it on as arguments.
 
 ## Installation
