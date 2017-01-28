@@ -44,7 +44,7 @@ class Builder extends BaseBuilder
      */
     public function getModels($columns = ['*'])
     {
-        $results = $this->query->get($columns);
+        $results = $this->query->get($columns)->all();
 
         $connection = $this->model->getConnectionName();
 
